@@ -25,7 +25,7 @@ namespace NotEnoughDB
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new Data();
+            DataContext = new Data(this);
         }
 
         private void ButtonGo_Click(object sender, RoutedEventArgs e)
