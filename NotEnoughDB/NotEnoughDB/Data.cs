@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace NotEnoughDB
 {
+    enum Entities { User, Server, Order }
     class Data : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
@@ -18,20 +19,20 @@ namespace NotEnoughDB
 
         #region Properties
         private IController Controller { get; set; }
-        private MainWindow Parrent { get; set; }
+        private MainWindow Parent { get; set; }
+
 
 
         public Command FindCmd { get; set; }
         public Command AddCmd { get; set; }
         public Command UpdateCmd { get; set; }
         public Command DeleteCmd { get; set; }
-
         #endregion
 
         #region Constructor
         public Data(MainWindow parrent)
         {
-            Parrent = parrent;
+            Parent = parrent;
 
 
             FindCmd     = new Command(_FindCmd);
@@ -46,7 +47,29 @@ namespace NotEnoughDB
         public void Initialise(DataBases db)=> Controller = DB.GetController(db);
         public bool IsController() => Controller != null;
 
-
+        public void ChangeEntity(Entities entity)
+        {
+            switch (entity)
+            {
+                case Entities.User:
+                    Parent.UserGrid.Visibility = System.Windows.Visibility.Visible;
+                    Parent.ServerGrid.Visibility = System.Windows.Visibility.Collapsed;
+                    Parent.OrderGrid.Visibility = System.Windows.Visibility.Collapsed;
+                    break;
+                case Entities.Server:
+                    Parent.UserGrid.Visibility = System.Windows.Visibility.Collapsed;
+                    Parent.ServerGrid.Visibility = System.Windows.Visibility.Visible;
+                    Parent.OrderGrid.Visibility = System.Windows.Visibility.Collapsed;
+                    break;
+                case Entities.Order:
+                    Parent.UserGrid.Visibility = System.Windows.Visibility.Collapsed;
+                    Parent.ServerGrid.Visibility = System.Windows.Visibility.Collapsed;
+                    Parent.OrderGrid.Visibility = System.Windows.Visibility.Visible;
+                    break;
+                default:
+                    break;
+            }
+        }
 
 
         private void _FindCmd()

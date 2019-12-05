@@ -92,7 +92,22 @@
                         Command="{Binding DeleteCmd}"/>
             </Grid>
 
-            
+            <Grid Grid.Column="0"
+                  Grid.Row="0"
+                  Grid.ColumnSpan="3">
+                <Grid x:Name="UserGrid"
+                      Visibility="Visible">
+                    
+                </Grid>
+                <Grid x:Name="ServerGrid"
+                      Visibility="Collapsed">
+
+                </Grid>
+                <Grid x:Name="OrderGrid"
+                      Visibility="Collapsed">
+
+                </Grid>
+            </Grid>
             
         </Grid>
     </Grid>
