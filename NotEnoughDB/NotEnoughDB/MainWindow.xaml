@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotEnoughDB"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="NotEnoughDB - by Marko Kvyk" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel x:Name="first" Visibility="Collapsed" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+            <RadioButton x:Name="SQLite" GroupName="db" Content="SQLite"/>
+
+            <Button Content="GO" Click="ButtonGo_Click"/>
+        </StackPanel>
+        <Grid x:Name="main" Visibility="Visible">
+            
+        </Grid>
+
     </Grid>
 </Window>

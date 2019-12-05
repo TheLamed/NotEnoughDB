@@ -20,9 +20,24 @@ namespace NotEnoughDB
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Data data => DataContext as Data;
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new Data();
+        }
+
+        private void ButtonGo_Click(object sender, RoutedEventArgs e)
+        {
+            if (SQLite.IsChecked ?? false) data.Initialise(DataBases.SQLite);
+
+
+
+            if (!data.IsController()) return;
+
+            main.Visibility = Visibility.Visible;
+            first.Visibility = Visibility.Collapsed;
         }
     }
 }
