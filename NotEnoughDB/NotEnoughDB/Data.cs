@@ -1,5 +1,7 @@
-﻿using System;
+﻿using NotEnoughDB.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -21,6 +23,43 @@ namespace NotEnoughDB
         private IController Controller { get; set; }
         private MainWindow Parent { get; set; }
 
+        public ObservableCollection<Server> Servers { get; set; }
+        public ObservableCollection<Server> Users { get; set; }
+        public ObservableCollection<Server> Orders { get; set; }
+
+        private Server _SelectedServer;
+        public Server SelectedServer
+        {
+            get => _SelectedServer;
+            set
+            {
+                _SelectedServer = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private User _SelectedUser;
+        public User SelectedUser
+        {
+            get => _SelectedUser;
+            set
+            {
+                _SelectedUser = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private Order _SelectedOrder;
+        public Order SelectedOrder
+        {
+            get => _SelectedOrder;
+            set
+            {
+                _SelectedOrder = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
 
         public Command FindCmd { get; set; }
@@ -35,6 +74,10 @@ namespace NotEnoughDB
             Parent = parrent;
 
 
+            Servers = new ObservableCollection<Server>();
+            Users = new ObservableCollection<Server>();
+            Orders = new ObservableCollection<Server>();
+
             FindCmd     = new Command(_FindCmd);
             AddCmd      = new Command(_AddCmd);
             UpdateCmd   = new Command(_UpdateCmd);
@@ -44,7 +87,12 @@ namespace NotEnoughDB
 
         #region Methods
 
-        public void Initialise(DataBases db)=> Controller = DB.GetController(db);
+        public void Initialise(DataBases db)
+        {
+            Controller = DB.GetController(db);
+
+            Controller.ServersUpdated += _ServersUpdated;
+        }
         public bool IsController() => Controller != null;
 
         public void ChangeEntity(Entities entity)
@@ -70,6 +118,14 @@ namespace NotEnoughDB
                     break;
             }
         }
+
+        private void _ServersUpdated()
+        {
+            Servers.Clear();
+            foreach (var item in Controller.GetServers(null))
+                Servers.Add(item);
+        }
+
 
 
         private void _FindCmd()

@@ -20,16 +20,21 @@
             <Setter Property="FontSize" Value="34"/>
             <Setter Property="Margin" Value="10"/>
         </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="34"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
     
     <Grid>
-        <StackPanel x:Name="first" Visibility="Collapsed" 
+        <StackPanel x:Name="first" Visibility="Visible" 
                     HorizontalAlignment="Center" VerticalAlignment="Center">
             <RadioButton x:Name="SQLite" GroupName="db" Content="SQLite"/>
 
             <Button Content="GO" Click="ButtonGo_Click"/>
         </StackPanel>
-        <Grid x:Name="main" Visibility="Visible">
+        <Grid x:Name="main" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*"/>
                 <RowDefinition Height="*"/>
@@ -44,7 +49,9 @@
 
             <Label Content="Users"
                    Grid.Row="1"
-                   Grid.Column="0"/>
+                   Grid.Column="0" 
+                   MouseDoubleClick="OpenUsers"
+                   />
             <ListBox Grid.Row="2"
                      Grid.Column="0"
                      ItemsSource="{Binding Users}"
@@ -53,7 +60,8 @@
 
             <Label Content="Servers"
                    Grid.Row="1"
-                   Grid.Column="1"/>
+                   Grid.Column="1"
+                   MouseDoubleClick="OpenServers"/>
             <ListBox Grid.Row="2"
                      Grid.Column="1"
                      ItemsSource="{Binding Servers}"
@@ -62,7 +70,8 @@
 
             <Label Content="Orders"
                    Grid.Row="1"
-                   Grid.Column="2"/>
+                   Grid.Column="2"
+                   MouseDoubleClick="OpenOrders"/>
             <ListBox Grid.Row="2"
                      Grid.Column="2"
                      ItemsSource="{Binding Orders}"
@@ -97,15 +106,118 @@
                   Grid.ColumnSpan="3">
                 <Grid x:Name="UserGrid"
                       Visibility="Visible">
-                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Name"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                    <Label Content="Surname"
+                           Grid.Row="0"
+                           Grid.Column="1"/>
+                    <Label Content="Company"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                    <Label Content="Email"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                    <TextBox Grid.Row="1"
+                             Grid.Column="0"
+                             Text="{Binding UserName}"/>
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Text="{Binding UserSurname}"/>
+                    <TextBox Grid.Row="3"
+                             Grid.Column="0"
+                             Text="{Binding UserCompany}"/>
+                    <TextBox Grid.Row="3"
+                             Grid.Column="1"
+                             Text="{Binding UserEmail}"/>
                 </Grid>
                 <Grid x:Name="ServerGrid"
                       Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Processor"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                    <Label Content="Country"
+                           Grid.Row="0"
+                           Grid.Column="1"/>
+                    <Label Content="RAM"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                    <Label Content="SSD"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
 
+                    <TextBox Grid.Row="1"
+                             Grid.Column="0"
+                             Text="{Binding ServerProcessor}"/>
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Text="{Binding ServerCountry}"/>
+                    <TextBox Grid.Row="3"
+                             Grid.Column="0"
+                             Text="{Binding ServerRAM}"/>
+                    <TextBox Grid.Row="3"
+                             Grid.Column="1"
+                             Text="{Binding ServerSSD}"/>
                 </Grid>
                 <Grid x:Name="OrderGrid"
                       Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="User"
+                           Grid.Row="0" Grid.ColumnSpan="2"
+                           Grid.Column="0"/>
+                    <Label Content="Server"
+                           Grid.Row="0" Grid.ColumnSpan="2"
+                           Grid.Column="2"/>
+                    <Label Content="From:"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                    <Label Content="To:"
+                           Grid.Row="2"
+                           Grid.Column="2"/>
 
+                    <TextBox Grid.Row="1"
+                             Grid.Column="0" Grid.ColumnSpan="2"
+                             Text="{Binding OrderUser}"/>
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2" Grid.ColumnSpan="2"
+                             Text="{Binding OrderServer}"/>
+                    <Calendar Grid.Row="3"
+                             Grid.Column="1"
+                             SelectedDate="{Binding OrderFrom}"/>
+                    <Calendar Grid.Row="3"
+                             Grid.Column="3"
+                             SelectedDate="{Binding OrderTo}"/>
                 </Grid>
             </Grid>
             

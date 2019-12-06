@@ -13,5 +13,10 @@ namespace NotEnoughDB.Models
         public int RAM { get; set; }
         public int SSD { get; set; }
         public string Country { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {ID,4} Processor: {Processor,10}\nRAM: {RAM,4} SSD: {SSD,5}";
+        }
     }
 }

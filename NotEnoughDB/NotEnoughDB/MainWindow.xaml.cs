@@ -39,5 +39,18 @@ namespace NotEnoughDB
             main.Visibility = Visibility.Visible;
             first.Visibility = Visibility.Collapsed;
         }
+
+        private void OpenUsers(object sender, MouseButtonEventArgs e)
+        {
+            data.ChangeEntity(Entities.User);
+        }
+        private void OpenServers(object sender, MouseButtonEventArgs e)
+        {
+            data.ChangeEntity(Entities.Server);
+        }
+        private void OpenOrders(object sender, MouseButtonEventArgs e)
+        {
+            data.ChangeEntity(Entities.Order);
+        }
     }
 }
