@@ -85,7 +85,9 @@
     <Compile Include="Command.cs" />
     <Compile Include="Controllers\SQLiteControl.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="DataProperties.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="Exceptions\RequiredFieldException.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

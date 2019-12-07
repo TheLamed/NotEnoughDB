@@ -17,10 +17,6 @@ namespace NotEnoughDB
         IEnumerable<User> GetUsers(User user);
         IEnumerable<Order> GetOrders(Order order);
 
-        Server GetServerByID(int id);
-        User GetUserByID(int id);
-        Order GetOrderByID(int id);
-
         void AddServer(Server server);
         void AddUser(User user);
         void AddOrder(Order order);
