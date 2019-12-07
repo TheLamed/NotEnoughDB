@@ -33,6 +33,7 @@
         <StackPanel x:Name="first" Visibility="Visible" 
                     HorizontalAlignment="Center" VerticalAlignment="Center">
             <RadioButton x:Name="SQLite" GroupName="db" Content="SQLite"/>
+            <RadioButton x:Name="Neo4j" GroupName="db" Content="Neo4j"/>
 
             <Button Content="GO" Click="ButtonGo_Click"/>
         </StackPanel>

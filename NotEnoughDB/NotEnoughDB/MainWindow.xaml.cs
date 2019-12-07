@@ -30,7 +30,8 @@ namespace NotEnoughDB
 
         private void ButtonGo_Click(object sender, RoutedEventArgs e)
         {
-            if (SQLite.IsChecked ?? false) data.Initialise(DataBases.SQLite);
+            if (SQLite.IsChecked ?? false)  data.Initialise(DataBases.SQLite);
+            if (Neo4j.IsChecked ?? false)   data.Initialise(DataBases.Neo4j);
 
 
 

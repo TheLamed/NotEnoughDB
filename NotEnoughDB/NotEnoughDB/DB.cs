@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace NotEnoughDB
 {
-    public enum DataBases { SQLite }
+    public enum DataBases { SQLite, Neo4j }
     public static class DB
     {
         public static IController GetController(DataBases db)
         {
             switch (db)
             {
-                case DataBases.SQLite: return new SQLiteControl();
-
+                case DataBases.SQLite:  return new SQLiteControl();
+                case DataBases.Neo4j:   return new Neo4jControl();
 
 
 

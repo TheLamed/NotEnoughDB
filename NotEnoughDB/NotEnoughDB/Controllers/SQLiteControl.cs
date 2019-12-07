@@ -286,17 +286,10 @@ namespace NotEnoughDB.Controllers
                     o.UID = Convert.ToInt32(reader["UID"]);
                     o.SID = Convert.ToInt32(reader["SID"]);
                     if (reader["datefrom"] != DBNull.Value)
-                    {
-                        var tmpdate = reader["datefrom"].ToString().Split("-/".ToCharArray())
-                            .Select(v => Convert.ToInt32(v)).ToArray();
-                        o.DateFrom = new DateTime(tmpdate[0], tmpdate[1], tmpdate[2]);
-                    }
+                        o.DateFrom = Convert.ToDateTime(reader["datefrom"]);
                     else o.DateFrom = null;
                     if (reader["dateto"] != DBNull.Value)
-                    {
-                        var tmpdate = reader["dateto"].ToString().Split("-/".ToCharArray()).Select(v => Convert.ToInt32(v)).ToArray();
-                        o.DateTo = new DateTime(tmpdate[0], tmpdate[1], tmpdate[2]);
-                    }
+                        o.DateTo = Convert.ToDateTime(reader["dateto"]);
                     else o.DateTo = null;
                     orders.Add(o);
                 }
