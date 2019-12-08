@@ -27,6 +27,10 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="FontSize" Value="34"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
     
     <Grid>
@@ -34,6 +38,7 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center">
             <RadioButton x:Name="SQLite" GroupName="db" Content="SQLite"/>
             <RadioButton x:Name="Neo4j" GroupName="db" Content="Neo4j"/>
+            <RadioButton x:Name="FireBase" GroupName="db" Content="FireBase"/>
 
             <Button Content="GO" Click="ButtonGo_Click"/>
         </StackPanel>
