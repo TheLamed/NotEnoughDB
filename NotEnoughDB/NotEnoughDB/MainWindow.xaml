@@ -39,6 +39,7 @@
             <RadioButton x:Name="SQLite" GroupName="db" Content="SQLite"/>
             <RadioButton x:Name="Neo4j" GroupName="db" Content="Neo4j"/>
             <RadioButton x:Name="FireBase" GroupName="db" Content="FireBase"/>
+            <RadioButton x:Name="MongoDB" GroupName="db" Content="MongoDB"/>
 
             <Button Content="GO" Click="ButtonGo_Click"/>
         </StackPanel>

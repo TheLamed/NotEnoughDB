@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace NotEnoughDB.Models
 {
     public class Order
     {
+        [BsonId]//Only for MongoDB
         public int ID { get; set; }
         public int? UID { get; set; }
         public int? SID { get; set; }

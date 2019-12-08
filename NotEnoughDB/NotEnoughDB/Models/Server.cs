@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace NotEnoughDB.Models
 {
     public class Server
     {
+        [BsonId]//Only for MongoDB
         public int ID { get; set; }
         public string Processor { get; set; }
         public int? RAM { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NotEnoughDB
 {
-    public enum DataBases { SQLite, Neo4j, FireBase }
+    public enum DataBases { SQLite, Neo4j, FireBase, MongoDB }
     public static class DB
     {
         public static IController GetController(DataBases db)
@@ -17,6 +17,7 @@ namespace NotEnoughDB
                 case DataBases.SQLite:  return new SQLiteControl();
                 case DataBases.Neo4j:   return new Neo4jControl();
                 case DataBases.FireBase: return new FireBaseControl();
+                case DataBases.MongoDB: return new MongoDBControl();
 
 
                 default: return null;
