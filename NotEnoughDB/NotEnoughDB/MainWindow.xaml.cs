@@ -34,6 +34,7 @@ namespace NotEnoughDB
             if (Neo4j.IsChecked ?? false)   data.Initialise(DataBases.Neo4j);
             if (FireBase.IsChecked ?? false) data.Initialise(DataBases.FireBase);
             if (MongoDB.IsChecked ?? false) data.Initialise(DataBases.MongoDB);
+            if (OrientDB.IsChecked ?? false) data.Initialise(DataBases.OrientDB);
 
             if (!data.IsController()) return;
 

@@ -124,11 +124,11 @@ namespace NotEnoughDB.Controllers
             UUpdated?.Invoke();
         }
 
-        public void DeleteOrder(int id)
+        public void DeleteOrder(Order order)
         {
             try
             {
-                FirebaseResponse response = client.Delete("Orders/" + id);
+                FirebaseResponse response = client.Delete("Orders/" + order.ID);
             }
             catch (Exception)
             {
@@ -137,11 +137,11 @@ namespace NotEnoughDB.Controllers
             OUpdated?.Invoke();
         }
 
-        public void DeleteServer(int id)
+        public void DeleteServer(Server server)
         {
             try
             {
-                FirebaseResponse response = client.Delete("Servers/" + id);
+                FirebaseResponse response = client.Delete("Servers/" + server.ID);
             }
             catch (Exception)
             {
@@ -150,11 +150,11 @@ namespace NotEnoughDB.Controllers
             SUpdated?.Invoke();
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(User user)
         {
             try
             {
-                FirebaseResponse response = client.Delete("Users/" + id);
+                FirebaseResponse response = client.Delete("Users/" + user.ID);
             }
             catch (Exception)
             {

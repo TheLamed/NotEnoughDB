@@ -21,9 +21,9 @@ namespace NotEnoughDB
         void AddUser(User user);
         void AddOrder(Order order);
 
-        void DeleteServer(int id);
-        void DeleteUser(int id);
-        void DeleteOrder(int id);
+        void DeleteServer(Server server);
+        void DeleteUser(User user);
+        void DeleteOrder(Order order);
 
         void UpdateServer(Server server);
         void UpdateUser(User user);

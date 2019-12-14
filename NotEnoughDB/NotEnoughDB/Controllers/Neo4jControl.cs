@@ -132,34 +132,34 @@ namespace NotEnoughDB.Controllers
             UUpdated?.Invoke();
         }
 
-        public void DeleteOrder(int id)
+        public void DeleteOrder(Order order)
         {
             using (var session = driver.Session())
             {
                 var result = session.WriteTransaction(transaction =>
                 {
                     string tr = "MATCH ()-[o:Order]->() WHERE id(o) = $ID DELETE o";
-                    var _result = transaction.Run(tr, new { ID = id });
+                    var _result = transaction.Run(tr, new { ID = order.ID });
                     return _result;
                 });
             }
             OUpdated?.Invoke();
         }
 
-        public void DeleteServer(int id)
+        public void DeleteServer(Server server)
         {
             using (var session = driver.Session())
             {
                 var result_relationships = session.WriteTransaction(transaction =>
                 {
                     string tr = "MATCH ()-[o:Order]->(s:Server) WHERE id(s) = $ID DELETE o";
-                    var _result = transaction.Run(tr, new { ID = id });
+                    var _result = transaction.Run(tr, new { ID = server.ID });
                     return _result;
                 });
                 var result_nodes = session.WriteTransaction(transaction =>
                 {
                     string tr = "MATCH (s:Server) WHERE id(s) = $ID DELETE s";
-                    var _result = transaction.Run(tr, new { ID = id });
+                    var _result = transaction.Run(tr, new { ID = server.ID });
                     return _result;
                 });
             }
@@ -167,20 +167,20 @@ namespace NotEnoughDB.Controllers
             OUpdated?.Invoke();
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(User user)
         {
             using (var session = driver.Session())
             {
                 var result_relationships = session.WriteTransaction(transaction =>
                 {
                     string tr = "MATCH (u:User)-[o:Order]->() WHERE id(u) = $ID DELETE o";
-                    var _result = transaction.Run(tr, new { ID = id });
+                    var _result = transaction.Run(tr, new { ID = user.ID });
                     return _result;
                 });
                 var result_nodes = session.WriteTransaction(transaction =>
                 {
                     string tr = "MATCH (u:User) WHERE id(u) = $ID DELETE u";
-                    var _result = transaction.Run(tr, new { ID = id });
+                    var _result = transaction.Run(tr, new { ID = user.ID });
                     return _result;
                 });
             }

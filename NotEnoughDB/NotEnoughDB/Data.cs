@@ -248,6 +248,7 @@ namespace NotEnoughDB
             User u = GetUser();
             if (u == null) return;
             u.ID = SelectedUser.ID;
+            if (DB.CurrentDB == DataBases.OrientDB) u.ID_pos = SelectedUser.ID_pos;
 
             if (u.Email != null && !new Regex(@"[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.[a-zA-Z0-9_]+").IsMatch(u.Email))
             {
@@ -274,6 +275,7 @@ namespace NotEnoughDB
             Server s = GetServer();
             if (s == null) return;
             s.ID = SelectedServer.ID;
+            if (DB.CurrentDB == DataBases.OrientDB) s.ID_pos = SelectedServer.ID_pos;
 
             try
             {
@@ -294,6 +296,7 @@ namespace NotEnoughDB
             Order o = GetOrder();
             if (o == null) return;
             o.ID = SelectedOrder.ID;
+            if (DB.CurrentDB == DataBases.OrientDB) o.ID_pos = SelectedOrder.ID_pos;
 
             try
             {
@@ -331,7 +334,7 @@ namespace NotEnoughDB
             }
             try
             {
-                Controller.DeleteUser(SelectedUser.ID);
+                Controller.DeleteUser(SelectedUser);
             }
             catch (RequiredFieldException e)
             {
@@ -347,7 +350,7 @@ namespace NotEnoughDB
             }
             try
             {
-                Controller.DeleteServer(SelectedServer.ID);
+                Controller.DeleteServer(SelectedServer);
             }
             catch (RequiredFieldException e)
             {
@@ -363,7 +366,7 @@ namespace NotEnoughDB
             }
             try
             {
-                Controller.DeleteOrder(SelectedOrder.ID);
+                Controller.DeleteOrder(SelectedOrder);
             }
             catch (RequiredFieldException e)
             {
@@ -431,7 +434,15 @@ namespace NotEnoughDB
             {
                 try
                 {
-                    o.UID = Convert.ToInt32(OrderUser);
+                    if(DB.CurrentDB != DataBases.OrientDB)//This if only for OrientDB
+                        o.UID = Convert.ToInt32(OrderUser);
+                    else
+                    {
+                        if (!new Regex(@"-?\d+:-?\d+").IsMatch(OrderUser)) throw new Exception();
+                        var arr = OrderUser.Split(new[] { ':' });
+                        o.UID = Convert.ToInt32(arr[0]);
+                        o.UID_pos = Convert.ToInt32(arr[1]);
+                    }
                 }
                 catch (Exception)
                 {
@@ -444,7 +455,15 @@ namespace NotEnoughDB
             {
                 try
                 {
-                    o.SID = Convert.ToInt32(OrderServer);
+                    if (DB.CurrentDB != DataBases.OrientDB)//This if only for OrientDB
+                        o.SID = Convert.ToInt32(OrderServer);
+                    else
+                    {
+                        if (!new Regex(@"-?\d+:-?\d+").IsMatch(OrderServer)) throw new Exception();
+                        var arr = OrderServer.Split(new[] { ':' });
+                        o.SID = Convert.ToInt32(arr[0]);
+                        o.SID_pos = Convert.ToInt32(arr[1]);
+                    }
                 }
                 catch (Exception)
                 {

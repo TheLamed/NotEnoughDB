@@ -193,12 +193,12 @@ namespace NotEnoughDB.Controllers
             }
         }
 
-        public void DeleteOrder(int id)
+        public void DeleteOrder(Order order)
         {
             SQLiteCommand cmd = new SQLiteCommand(connection);
             try
             {
-                cmd.CommandText = $"DELETE FROM \"Order\" WHERE ID = '{id}'";
+                cmd.CommandText = $"DELETE FROM \"Order\" WHERE ID = '{order.ID}'";
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -213,12 +213,12 @@ namespace NotEnoughDB.Controllers
             }
         }
 
-        public void DeleteServer(int id)
+        public void DeleteServer(Server server)
         {
             SQLiteCommand cmd = new SQLiteCommand(connection);
             try
             {
-                cmd.CommandText = $"DELETE FROM \"Server\" WHERE ID = '{id}'";
+                cmd.CommandText = $"DELETE FROM \"Server\" WHERE ID = '{server.ID}'";
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -233,12 +233,12 @@ namespace NotEnoughDB.Controllers
             }
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(User user)
         {
             SQLiteCommand cmd = new SQLiteCommand(connection);
             try
             {
-                cmd.CommandText = $"DELETE FROM \"User\" WHERE ID = '{id}'";
+                cmd.CommandText = $"DELETE FROM \"User\" WHERE ID = '{user.ID}'";
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }

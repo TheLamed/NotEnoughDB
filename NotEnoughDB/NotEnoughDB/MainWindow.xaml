@@ -40,6 +40,7 @@
             <RadioButton x:Name="Neo4j" GroupName="db" Content="Neo4j"/>
             <RadioButton x:Name="FireBase" GroupName="db" Content="FireBase"/>
             <RadioButton x:Name="MongoDB" GroupName="db" Content="MongoDB"/>
+            <RadioButton x:Name="OrientDB" GroupName="db" Content="OrientDB"/>
 
             <Button Content="GO" Click="ButtonGo_Click"/>
         </StackPanel>

@@ -100,26 +100,26 @@ namespace NotEnoughDB.Controllers
             UUpdated?.Invoke();
         }
 
-        public void DeleteOrder(int id)
+        public void DeleteOrder(Order order)
         {
             var collection = db.GetCollection<Order>("Orders");
-            var filter = new BsonDocument("_id", new BsonDocument("$eq", id));
+            var filter = new BsonDocument("_id", new BsonDocument("$eq", order.ID));
             collection.DeleteOne(filter);
             OUpdated?.Invoke();
         }
 
-        public void DeleteServer(int id)
+        public void DeleteServer(Server server)
         {
             var collection = db.GetCollection<Server>("Servers");
-            var filter = new BsonDocument("_id", new BsonDocument("$eq", id));
+            var filter = new BsonDocument("_id", new BsonDocument("$eq", server.ID));
             collection.DeleteOne(filter);
             SUpdated?.Invoke();
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(User user)
         {
             var collection = db.GetCollection<User>("Users");
-            var filter = new BsonDocument("_id", new BsonDocument("$eq", id));
+            var filter = new BsonDocument("_id", new BsonDocument("$eq", user.ID));
             collection.DeleteOne(filter);
             UUpdated?.Invoke();
         }

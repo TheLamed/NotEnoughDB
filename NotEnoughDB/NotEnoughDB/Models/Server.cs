@@ -11,11 +11,12 @@ namespace NotEnoughDB.Models
     {
         [BsonId]//Only for MongoDB
         public int ID { get; set; }
+        public long? ID_pos { get; set; }//Only for OrientDB
         public string Processor { get; set; }
         public int? RAM { get; set; }
         public int? SSD { get; set; }
         public string Country { get; set; }
 
-        public override string ToString() => $"ID: {ID,4} Processor: {Processor,10}\nRAM: {RAM,4} SSD: {SSD,5}";
+        public override string ToString() => $"ID: {ID,4}{(ID_pos != null ? ":" + ID_pos : "")} Processor: {Processor,10}\nRAM: {RAM,4} SSD: {SSD,5}";
     }
 }
