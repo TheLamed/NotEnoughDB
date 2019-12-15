@@ -278,6 +278,7 @@
     <Compile Include="Controllers\Neo4jControl.cs" />
     <Compile Include="Controllers\OrientDBControl.cs" />
     <Compile Include="Controllers\SQLiteControl.cs" />
+    <Compile Include="Controllers\XMLControl.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DataProperties.cs" />
     <Compile Include="DB.cs" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NotEnoughDB
 {
-    public enum DataBases { SQLite, Neo4j, FireBase, MongoDB, OrientDB }
+    public enum DataBases { SQLite, Neo4j, FireBase, MongoDB, OrientDB, XML }
     public static class DB
     {
         public static DataBases CurrentDB { get; private set; }
@@ -21,6 +21,7 @@ namespace NotEnoughDB
                 case DataBases.FireBase: return new FireBaseControl();
                 case DataBases.MongoDB: return new MongoDBControl();
                 case DataBases.OrientDB: return new OrientDBControl();
+                case DataBases.XML: return new XMLControl();
 
                 default: return null;
             }

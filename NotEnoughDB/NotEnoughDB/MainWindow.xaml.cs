@@ -35,6 +35,7 @@ namespace NotEnoughDB
             if (FireBase.IsChecked ?? false) data.Initialise(DataBases.FireBase);
             if (MongoDB.IsChecked ?? false) data.Initialise(DataBases.MongoDB);
             if (OrientDB.IsChecked ?? false) data.Initialise(DataBases.OrientDB);
+            if (XML.IsChecked ?? false) data.Initialise(DataBases.XML);
 
             if (!data.IsController()) return;
 
